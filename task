@@ -1,0 +1,174 @@
+mport { useState } from 'react';
+
+function AccountSettings() {
+  const [isTwoStepVerificationEnabled, setIsTwoStepVerificationEnabled] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+  const toggleTwoStepVerification = () => {
+    setIsTwoStepVerificationEnabled(!isTwoStepVerificationEnabled);
+  };
+
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible(!isPasswordVisible);
+  };
+
+  return (
+    <div className="container">
+      <div className="header">
+        <h1 className="title">Mia de Silva</h1>
+        <div className="actions">
+          <input type="text" placeholder="Search" />
+          <button>+ Invite</button>
+          <button>Upgrade</button>
+          <div className="profile-picture"></div>
+        </div>
+      </div>
+      <div className="sidebar">
+        <ul>
+          <li>Home</li>
+          <li>All files</li>
+          <li>Private files</li>
+          <li>Shared with me</li>
+          <li>Deleted files</li>
+          <li>Design</li>
+          <li>Notifications</li>
+          <li className="active">Settings</li>
+        </ul>
+        <div className="file-browser">
+          <p>FILE BROWSER</p>
+          <div className="actions">
+            <div></div>
+            <div></div>
+          </div>
+          <ul>
+            <li>
+              <div className="icon"></div>
+              <span>Folders</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div className="main">
+        <div className="tab-bar">
+          <ul>
+            <li>General</li>
+            <li className="active">Security</li>
+            <li>Billing</li>
+            <li>Notifications</li>
+            <li>Apps</li>
+            <li>Branding</li>
+            <li>Refer a friend</li>
+            <li>Sharing</li>
+          </ul>
+        </div>
+        <div className="security-banner">
+          <div className="circle">90%</div>
+          <div>
+            <h2>Your account security is 90%</h2>
+            <p>Please review your account security settings regularly and update your password.</p>
+          </div>
+          <button className="dismiss">Dismiss</button>
+          <button className="review-security">Review security</button>
+        </div>
+        <div className="section">
+          <h2>Basics</h2>
+          <div className="item">
+            <h3>Password</h3>
+            <p>Set a password to protect your account.</p>
+            <div className="password-input">
+              {isPasswordVisible ? (
+                <input type="text" value="••••••••••••••" disabled />
+              ) : (
+                <input type="password" value="••••••••••••••" disabled />
+              )}
+              <span className="icon" onClick={togglePasswordVisibility}>
+                {isPasswordVisible ? '👁️' : '🔒'}
+              </span>
+              <span className="very-secure">Very secure</span>
+            </div>
+            <button className="edit">Edit</button>
+          </div>
+          <div className="item">
+            <h3>Two-step verification</h3>
+            <p>
+              We recommend requiring a verification code in addition to your password.
+            </p>
+            <label className="switch">
+              <input type="checkbox" checked={isTwoStepVerificationEnabled} onChange={toggleTwoStepVerification} />
+              <span className="slider round"></span>
+            </label>
+            <span className="two-step-verification">Two-step verification</span>
+            <button className="edit">Edit</button>
+          </div>
+        </div>
+        <div className="section">
+          <h2>Browsers and devices</h2>
+          <p>
+            These browsers and devices are currently signed in to your account. Remove any unauthorized devices.
+          </p>
+          <ul>
+            <li>
+              <div className="icon"></div>
+              <span>Brave on Mac OS X</span>
+              <div className="location">
+                <div className="flag"></div>
+                <span>Ninh Binh, Vietnam</span>
+              </div>
+              <span>Current session</span>
+              <div className="actions">
+                <div></div>
+              </div>
+            </li>
+            <li>
+              <div className="icon"></div>
+              <span>Mia's MacBook Pro</span>
+              <div className="location">
+                <div className="flag"></div>
+                <span>Ninh Binh, Vietnam</span>
+              </div>
+              <span>Current session</span>
+              <div className="actions">
+                <div></div>
+              </div>
+            </li>
+            <li>
+              <div className="icon"></div>
+              <span>Brave on Mac OS X</span>
+              <div className="location">
+                <div className="flag"></div>
+                <span>Mexico City, Mexico</span>
+              </div>
+              <span>1 month ago</span>
+              <div className="actions">
+                <div></div>
+              </div>
+            </li>
+            <li>
+              <div className="icon"></div>
+              <span>Mia's MacBook Pro</span>
+              <div className="location">
+                <div className="flag"></div>
+                <span>Mexico City, Mexico</span>
+              </div>
+              <span>1 month ago</span>
+              <div className="actions">
+                <div></div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div className="storage">
+          <h3>Storage</h3>
+          <div className="progress-bar">
+            <div className="bar" style={{ width: '92%' }}></div>
+          </div>
+          <p>9.2 GB of 10 GB used</p>
+          <button>Upgrade</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default AccountSettings;
+
